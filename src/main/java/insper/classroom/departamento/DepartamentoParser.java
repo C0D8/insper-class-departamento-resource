@@ -7,8 +7,6 @@ public class DepartamentoParser {
                 .id_professor(in.id_professor())
                 .nome(in.nome())
                 .descricao(in.descricao())
-                .data(in.data())
-                .duracao(in.duracao())
                 .build();
     }
     

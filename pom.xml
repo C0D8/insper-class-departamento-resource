@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>insper.classroom</groupId>
-	<artifactId>monitoria-resource</artifactId>
+	<artifactId>departamento-resource</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>monitoria :: resource</name>
+	<name>departamento :: resource</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
@@ -46,8 +46,19 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>insper.classroom</groupId>
+			<artifactId>departamento</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>insper.classroom</groupId>
+			<artifactId>aula</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 		
-	  
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

@@ -34,12 +34,6 @@ public class DepartamentoModel {
     @Column(name = "tx_description")
     private String descricao;
 
-    @Column(name = "dt_start")
-    private String data;
-
-    @Column(name = "duration")
-    private String duracao;
-
     @Column(name = "id_professor")
     private String id_professor;
 
@@ -50,8 +44,6 @@ public class DepartamentoModel {
         this.id = o.id();
         this.nome = o.nome();
         this.descricao = o.descricao();
-        this.data = o.data();
-        this.duracao = o.duracao();
         this.id_professor = o.id_professor();
 
     }
@@ -61,8 +53,6 @@ public class DepartamentoModel {
                 .id(id)
                 .nome(nome)
                 .descricao(descricao)
-                .data(data)
-                .duracao(duracao)
                 .id_professor(id_professor)
                 .build();
     }

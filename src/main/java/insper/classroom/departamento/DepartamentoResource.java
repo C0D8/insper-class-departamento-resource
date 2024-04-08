@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import insper.classroom.departamento.Departamento;
 import insper.classroom.departamento.DepartamentoParser;
 
+
 @RestController
 public class DepartamentoResource implements DepartamentoController {
 
@@ -72,29 +73,17 @@ public class DepartamentoResource implements DepartamentoController {
         return ResponseEntity.ok(departamento);
     }
 
+    // chamar rota para listar aulas baseado no departamento
 
-    // @Override
-    // public ResponseEntity<AccountOut> update(String id, AccountIn in) {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'update'");
-    // }
+    @Override
+    public ResponseEntity<Departamento> getAulas(String id) {
+        Departamento departamento = departamentoService.getAulas(id);
+        if (departamento == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(departamento);
+    }
 
-    // @Override
-    // public ResponseEntity<AccountOut> auth(AuthIn in) {
-    //     Account account = aulaService.auth(in.email(), in.password());
-    //     if (account == null) {
-    //         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
-    //     }
-    //     return ResponseEntity.ok(AccountParser.to(account));
-    // }
-
-    // @Override
-    // public ResponseEntity<AccountOut> read(String idUser, String roleUser) {
-    //     final AccountOut account = AccountOut.builder()
-    //         .id(idUser)
-    //         .name(roleUser)
-    //         .build();
-    //     return ResponseEntity.ok(account);
-    // }
     
+
 }
