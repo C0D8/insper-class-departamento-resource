@@ -7,7 +7,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @EnableFeignClients(basePackages = {
-    "insper.classroom.aula"
+    "insper.classroom.aula",
+    "insper.classroom.monitoria"
 })
 @EnableDiscoveryClient
 @SpringBootApplication

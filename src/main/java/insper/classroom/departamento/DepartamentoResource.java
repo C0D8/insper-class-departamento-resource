@@ -14,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import insper.classroom.departamento.Departamento;
 import insper.classroom.departamento.DepartamentoParser;
 import insper.classroom.aula.CreateAulaOut;
+import insper.classroom.monitoria.CreateMonitoriaOut;
 import java.util.List;
 
 
@@ -88,5 +89,19 @@ public class DepartamentoResource implements DepartamentoController {
         }
         return ResponseEntity.ok(aulas);
     }
+
+
+    @Override
+    public ResponseEntity<List<CreateMonitoriaOut>> getMonitorias(String id) {
+
+        List<CreateMonitoriaOut> monitorias = departamentoService.readMonitoriasByDepartamento(id);
+        if (monitorias == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(monitorias);
+    }
+
+
+
 
 }
