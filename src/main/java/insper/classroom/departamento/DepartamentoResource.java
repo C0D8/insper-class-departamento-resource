@@ -4,13 +4,17 @@ package insper.classroom.departamento;
 
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.http.HttpStatus;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity;
+
 // import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import insper.classroom.departamento.Departamento;
 import insper.classroom.departamento.DepartamentoParser;
+import insper.classroom.aula.CreateAulaOut;
+import java.util.List;
 
 
 @RestController
@@ -76,14 +80,13 @@ public class DepartamentoResource implements DepartamentoController {
     // chamar rota para listar aulas baseado no departamento
 
     @Override
-    public ResponseEntity<Departamento> getAulas(String id) {
-        Departamento departamento = departamentoService.getAulas(id);
-        if (departamento == null) {
+    public ResponseEntity<List<CreateAulaOut>> getAulas(String id) {
+
+        List<CreateAulaOut> aulas = departamentoService.readByDepartamento(id);
+        if (aulas == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(departamento);
+        return ResponseEntity.ok(aulas);
     }
-
-    
 
 }
