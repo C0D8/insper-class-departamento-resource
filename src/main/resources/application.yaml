@@ -13,6 +13,14 @@ spring:
     properties:
       hibernate:
         default_schema: departamento
+
+  springdoc:
+    api-docs:
+      path: /departamentos/v3/api-docs
+    swagger-ui:
+      path: /departamentos/swagger-ui.html
+
+
 management:
   endpoints:
     web:

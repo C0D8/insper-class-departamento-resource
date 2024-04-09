@@ -16,9 +16,11 @@ import insper.classroom.departamento.DepartamentoParser;
 import insper.classroom.aula.CreateAulaOut;
 import insper.classroom.monitoria.CreateMonitoriaOut;
 import java.util.List;
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
+@Tag(name = "Departamento Resource", description = "Departamento Resource")
 public class DepartamentoResource implements DepartamentoController {
 
     @Autowired
@@ -54,6 +56,7 @@ public class DepartamentoResource implements DepartamentoController {
     // }
 
     @Override
+    @Operation(summary = "Create a new departamento", description = "Create a new departamento")
     public ResponseEntity<CreateDepartamentoOut> create(CreateDepartamentoIn in) {
         // parser
         Departamento departamento = DepartamentoParser.to(in);
@@ -70,6 +73,7 @@ public class DepartamentoResource implements DepartamentoController {
     }
 
     @Override
+    @Operation(summary = "Get departamento by id", description = "Get departamento by id")
     public ResponseEntity<Departamento> get(String id) {
         Departamento departamento = departamentoService.read(id);
         if (departamento == null) {
@@ -81,6 +85,7 @@ public class DepartamentoResource implements DepartamentoController {
     // chamar rota para listar aulas baseado no departamento
 
     @Override
+    @Operation(summary = "Get aulas by departamento", description = "Get aulas by departamento")
     public ResponseEntity<List<CreateAulaOut>> getAulas(String id) {
 
         List<CreateAulaOut> aulas = departamentoService.readByDepartamento(id);
@@ -92,6 +97,7 @@ public class DepartamentoResource implements DepartamentoController {
 
 
     @Override
+    @Operation(summary = "Get monitorias by departamento", description = "Get monitorias by departamento")
     public ResponseEntity<List<CreateMonitoriaOut>> getMonitorias(String id) {
 
         List<CreateMonitoriaOut> monitorias = departamentoService.readMonitoriasByDepartamento(id);
