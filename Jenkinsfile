@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Build Interface'){
             steps{
-                build job: 'store.departamento', wait: true
+                build job: 'classroom.departamento', wait: true
             }
         }
 
