@@ -4,6 +4,18 @@ pipeline {
         K8S_PORT = 53860
     }
     stages {
+
+         stage('Build Account') {
+            steps {
+                build job: 'classroom.departamento', wait: true
+                build job: 'classroom.classroom', wait: true
+                build job: 'classroom.monitoria', wait: true
+
+            }
+        }
+
+
+
         stage('Build') { 
             steps {
                 sh 'mvn clean package'
@@ -29,7 +41,6 @@ pipeline {
         stage('Deploy on k8s') {
             steps {
                 withCredentials([ string(credentialsId: 'minikube-credential', variable: 'api_token') ]) {
-                    sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT}  --insecure-skip-tls-verify=true apply -f ./k8s/configmap.yaml"
                     sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT}  --insecure-skip-tls-verify=true apply -f ./k8s/deployment.yaml"
                     sh "kubectl --token $api_token --server https://host.docker.internal:${env.K8S_PORT}  --insecure-skip-tls-verify=true apply -f ./k8s/service.yaml"
                 }
