@@ -11,6 +11,7 @@ import insper.classroom.monitoria.CreateMonitoriaOut;
 import insper.classroom.monitoria.MonitoriaController;
 import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
+import org.springframework.cache.annotation.Cacheable;
 @Service
 public class DepartamentoService {
 
@@ -26,7 +27,7 @@ public class DepartamentoService {
     public Departamento create(Departamento in) {
         return departamentoRepository.save(new DepartamentoModel(in)).to();
     }
-
+    @Cacheable(value = "departamentos", key = "#id", unless = "#result == null")
     public Departamento read(String id) {
         return departamentoRepository.findById(id).map(DepartamentoModel::to).orElse(null);
     }
