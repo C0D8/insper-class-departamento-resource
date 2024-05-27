@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
+import org.springframework.cache.annotation.Cacheable;
 @Service
 public class DepartamentoService {
 
@@ -35,6 +36,7 @@ public class DepartamentoService {
     }
 
     @CircuitBreaker(name = "departamentoService", fallbackMethod = "fallbackDepartamentoRead")
+    @Cacheable(value = "departamentos", key = "#id", unless = "#result == null")
     public Departamento read(String id) {
         return departamentoRepository.findById(id).map(DepartamentoModel::to).orElse(null);
     }
